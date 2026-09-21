@@ -1,6 +1,6 @@
 const express = require("express");
 
-const Attendance = require("../models/attendance");
+const Attendance = require("../models/Attendance");
 const Student = require("../models/Student");
 
 const authMiddleware = require("../middleware/authMiddleware");

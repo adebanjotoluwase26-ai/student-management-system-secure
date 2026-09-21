@@ -5,7 +5,7 @@ const crypto = require("crypto");
 const User = require("../models/User");
 const Student = require("../models/Student");
 const Result = require("../models/Result");
-const Attendance = require("../models/attendance");
+const Attendance = require("../models/Attendance");
 
 const authMiddleware = require("../middleware/authMiddleware");
 const adminMiddleware = require("../middleware/adminMiddleware");
@@ -472,7 +472,7 @@ router.delete(
 
 
             // Delete attendance records
-            await require("../models/attendance").deleteMany({
+            await Attendance.deleteMany({
                 studentId
             });
 
