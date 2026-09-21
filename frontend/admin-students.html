@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Students</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            width: 92%;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            background: #222;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        #message {
+            margin-top: 15px;
+            min-height: 20px;
+        }
+
+        .back-button {
+            background: #555;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 700px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Manage Students</h1>
+        <p>The Ambassadors School, Ota</p>
+    </header>
+
+    <main>
+
+        <button
+            type="button"
+            class="back-button"
+            onclick="window.location.href='admin-dashboard.html'">
+            ← Back to Dashboard
+        </button>
+
+        <section class="card">
+
+            <h2>Create Student Account</h2>
+
+            <form id="studentForm">
+
+                <div class="form-grid">
+
+                    <div>
+                        <label for="firstName">First Name</label>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            required
+                        >
+                    </div>
+
+
+                    <div>
+                        <label for="surname">Surname</label>
+
+                        <input
+                            type="text"
+                            id="surname"
+                            required
+                        >
+                    </div>
+
+
+                    <div>
+                        <label for="studentClass">Class</label>
+
+                        <select
+                            id="studentClass"
+                            required
+                        >
+                            <option value="">Select Class</option>
+                            <option value="SS1">SS1</option>
+                            <option value="SS2">SS2</option>
+                            <option value="SS3">SS3</option>
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label for="gender">Gender</label>
+
+                        <select id="gender">
+
+                            <option value="">
+                                Select Gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label for="dob">Date of Birth</label>
+
+                        <input
+                            type="date"
+                            id="dob"
+                        >
+                    </div>
+
+
+                    <div>
+                        <label for="phoneNo">
+                            Parent/Guardian Phone
+                        </label>
+
+                        <input
+                            type="text"
+                            id="phoneNo"
+                            maxlength="11"
+                        >
+                    </div>
+
+
+                    <div class="full-width">
+                        
+                        <label for="email">
+                            Student Login Email
+                            <small>(Optional — can be added during activation)</small>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Leave blank if student has no email yet"
+                        >
+                    </div>
+
+
+                    <div class="full-width">
+
+                        <label for="password">
+                            Student Login Password
+                            <small>(Optional — student can create one during activation)</small>
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Leave blank for account activation"
+                        >
+                    </div>
+
+
+                    <div class="full-width">
+                        <label for="homeAddress">
+                            Home Address
+                        </label>
+
+                        <textarea
+                            id="homeAddress"
+                            rows="3"
+                        ></textarea>
+
+                        <div class="full-width">
+
+                            <label>
+                                Subjects
+                            </label>
+
+                            <div
+                                style="
+                                    border: 1px solid #ccc;
+                                    border-radius: 6px;
+                                    padding: 12px;
+                                    background: #fff;
+                                "
+                            >
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="Mathematics"
+                                    >
+                                    Mathematics
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="English"
+                                    >
+                                    English
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="Civic Education"
+                                    >
+                                    Civic Education
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="Biology"
+                                    >
+                                    Biology
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="Chemistry"
+                                    >
+                                    Chemistry
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="Physics"
+                                    >
+                                    Physics
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="Further Mathematics"
+                                    >
+                                    Further Mathematics
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="Government"
+                                    >
+                                    Government
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="Literature-in-English"
+                                    >
+                                    Literature-in-English
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="History"
+                                    >
+                                    History
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="CRS"
+                                    >
+                                    CRS
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="Economics"
+                                    >
+                                    Economics
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="Financial Accounting"
+                                    >
+                                    Financial Accounting
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="Commerce"
+                                    >
+                                    Commerce
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="Book Keeping"
+                                    >
+                                    Book Keeping
+                                </label>
+
+                                <label style="font-weight: normal;">
+                                    <input
+                                        type="checkbox"
+                                        name="subjects"
+                                        value="Marketing"
+                                    >
+                                    Marketing
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="activationBox"
+                    style="
+                        display: none;
+                        margin-top: 20px;
+                        padding: 15px;
+                        border-radius: 8px;
+                        background: #f1f1f1;
+                    "
+                >
+                    <strong>Student Activation Details</strong>
+
+                    <p>
+                        Give these details to the student:
+                    </p>
+
+                    <p>
+                        Student ID:
+                        <strong id="activationStudentId"></strong>
+                    </p>
+
+                    <p>
+                        Activation Code:
+                        <strong id="activationCode"></strong>
+                    </p>
+
+                    <p>
+                        Expires:
+                        <strong id="activationExpiry"></strong>
+                    </p>
+
+                    <small>
+                        Keep the activation code private. It expires after 24 hours.
+                    </small>
+                </div>
+
+                <button type="submit">
+                    Create Student
+                </button>
+
+            </form>
+
+            <p id="message"></p>
+
+        </section>
+
+    </main>
+
+    <section class="card">
+
+        <h2>Registered Students</h2>
+
+        <div style="overflow-x: auto;">
+
+            <table
+                style="
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                "
+            >
+
+                <thead>
+
+                    <tr>
+
+                        <th style="padding: 10px; border-bottom: 1px solid #ddd;">
+                            Student ID
+                        </th>
+
+                        <th style="padding: 10px; border-bottom: 1px solid #ddd;">
+                            Name
+                        </th>
+
+                        <th style="padding: 10px; border-bottom: 1px solid #ddd;">
+                            Class
+                        </th>
+
+                        <th style="padding: 10px; border-bottom: 1px solid #ddd;">
+                            Email
+                        </th>
+
+                        <th style="padding: 10px; border-bottom: 1px solid #ddd;">
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="studentsTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <script src="config.js"></script>
+    <script src="admin-students.js"></script>
+
+</body>
+</html>

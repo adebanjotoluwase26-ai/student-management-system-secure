@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Student</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            width: 92%;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .subjects-box {
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 12px;
+        }
+
+        .subjects-box label {
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            background: #222;
+            color: white;
+            cursor: pointer;
+        }
+
+        .cancel-button {
+            background: #555;
+        }
+
+        #message {
+            margin-top: 15px;
+            min-height: 20px;
+        }
+
+        @media (max-width: 700px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Edit Student</h1>
+
+        <p>The Ambassadors School, Ota</p>
+
+    </header>
+
+
+    <main>
+
+        <section class="card">
+
+            <h2 id="studentTitle">
+                Loading student...
+            </h2>
+
+
+            <form id="editStudentForm">
+
+                <div class="form-grid">
+
+
+                    <div>
+
+                        <label for="firstName">
+                            First Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            required>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="surname">
+                            Surname
+                        </label>
+
+                        <input
+                            type="text"
+                            id="surname"
+                            required>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="studentClass">
+                            Class
+                        </label>
+
+                        <select
+                            id="studentClass"
+                            required>
+
+                            <option value="">
+                                Select Class
+                            </option>
+
+                            <option value="SS1">
+                                SS1
+                            </option>
+
+                            <option value="SS2">
+                                SS2
+                            </option>
+
+                            <option value="SS3">
+                                SS3
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="gender">
+                            Gender
+                        </label>
+
+                        <select id="gender">
+
+                            <option value="">
+                                Select Gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="dob">
+                            Date of Birth
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dob">
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="phoneNo">
+                            Parent/Guardian Phone
+                        </label>
+
+                        <input
+                            type="text"
+                            id="phoneNo"
+                            maxlength="11">
+
+                    </div>
+
+
+                    <div class="full-width">
+
+                        <label for="email">
+                            Student Login Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            required>
+
+                    </div>
+
+
+                    <div class="full-width">
+
+                        <label for="password">
+                            New Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Leave blank to keep current password">
+
+                    </div>
+
+
+                    <div class="full-width">
+
+                        <label for="homeAddress">
+                            Home Address
+                        </label>
+
+                        <textarea
+                            id="homeAddress"
+                            rows="3">
+                        </textarea>
+
+                    </div>
+
+
+                    <div class="full-width">
+
+                        <label>
+                            Subjects
+                        </label>
+
+                        <div class="subjects-box">
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="Mathematics">
+                                Mathematics
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="English">
+                                English
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="Civic Education">
+                                Civic Education
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="Biology">
+                                Biology
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="Chemistry">
+                                Chemistry
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="Physics">
+                                Physics
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="Further Mathematics">
+                                Further Mathematics
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="Government">
+                                Government
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="Literature-in-English">
+                                Literature-in-English
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="History">
+                                History
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="CRS">
+                                CRS
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="Economics">
+                                Economics
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="Financial Accounting">
+                                Financial Accounting
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="Commerce">
+                                Commerce
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="Book Keeping">
+                                Book Keeping
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="subjects"
+                                    value="Marketing">
+                                Marketing
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <button type="submit">
+                        💾 Save Changes
+                    </button>
+
+                    <button
+                        type="button"
+                        class="cancel-button"
+                        onclick="window.history.back()">
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <p id="message"></p>
+
+        </section>
+
+    </main>
+
+    <script src="config.js"></script>
+    <script src="admin-edit-student.js"></script>
+
+</body>
+
+</html>

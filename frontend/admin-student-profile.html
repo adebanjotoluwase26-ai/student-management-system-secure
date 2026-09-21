@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Student Profile</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            width: 92%;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .info-box {
+            background: #f7f7f7;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 6px;
+            background: #222;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 650px) {
+            .info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Student Profile</h1>
+
+        <p>The Ambassadors School, Ota</p>
+
+    </header>
+
+
+    <main>
+
+        <section class="card">
+
+            <h2 id="studentName">
+                Loading student...
+            </h2>
+
+            <div class="info">
+
+                <div class="info-box">
+                    <strong>Student ID</strong>
+                    <span id="studentId">-</span>
+                </div>
+
+                <div class="info-box">
+                    <strong>Class</strong>
+                    <span id="studentClass">-</span>
+                </div>
+
+                <div class="info-box">
+                    <strong>Email</strong>
+                    <span id="email">-</span>
+                </div>
+
+                <div class="info-box">
+                    <strong>Gender</strong>
+                    <span id="gender">-</span>
+                </div>
+
+                <div class="info-box">
+                    <strong>Date of Birth</strong>
+                    <span id="dob">-</span>
+                </div>
+
+                <div class="info-box">
+                    <strong>Phone Number</strong>
+                    <span id="phoneNo">-</span>
+                </div>
+
+                <div class="info-box"
+                     style="grid-column: 1 / -1;">
+                    <strong>Home Address</strong>
+                    <span id="homeAddress">-</span>
+                </div>
+
+                <div class="info-box"
+                     style="grid-column: 1 / -1;">
+                    <strong>Subjects</strong>
+                    <span id="subjects">-</span>
+                </div>
+
+            </div>
+
+            <div
+                style="
+                    margin-top: 25px;
+                    padding: 15px;
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                "
+            >
+                <h3>Account Activation</h3>
+
+                <p id="activationMessage">
+                    Generate a new activation code for this student when needed.
+                </p>
+
+                <button
+                    type="button"
+                    id="generateActivationButton">
+                    🔑 Generate Activation Code
+                </button>
+
+                <div
+                    style="
+                        margin-top: 25px;
+                        padding: 15px;
+                        border: 1px solid #ddd;
+                        border-radius: 8px;
+                    "
+                >
+                    <h3>Student Password</h3>
+
+                    <p>
+                        The admin can set a new password if the student forgets theirs.
+                    </p>
+
+                    <label for="newStudentPassword">
+                        New Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="newStudentPassword"
+                        placeholder="Enter new password"
+                        minlength="8"
+                        style="
+                            width: 100%;
+                            padding: 11px;
+                            border: 1px solid #ccc;
+                            border-radius: 6px;
+                            margin-top: 6px;
+                        "
+                    >
+
+                    <button
+                        type="button"
+                        id="resetStudentPasswordButton"
+                        style="
+                            margin-top: 15px;
+                            background: #222;
+                        "
+                    >
+                        🔑 Reset Student Password
+                    </button>
+
+                    <p id="passwordResetMessage"></p>
+                </div>
+                
+                <div
+                    style="
+                        margin-top: 25px;
+                        padding: 15px;
+                        border: 1px solid #ddd;
+                        border-radius: 8px;
+                    "
+                >
+                    <h3>Account Status</h3>
+
+                    <p>
+                        Current status:
+                        <strong id="accountStatus">
+                            Checking...
+                        </strong>
+                    </p>
+
+                    <button
+                        type="button"
+                        id="deactivateAccountButton"
+                        style="
+                            background: #b00020;
+                        "
+                    >
+                        🚫 Deactivate Account
+                    </button>
+
+                    <button
+                        type="button"
+                        id="reactivateAccountButton"
+                        style="
+                            background: #222;
+                            display: none;
+                        "
+                    >
+                        ✅ Reactivate Account
+                    </button>
+
+                    <p id="accountStatusMessage"></p>
+                </div>
+
+                <div
+                    id="activationResult"
+                    style="
+                        display: none;
+                        margin-top: 15px;
+                        padding: 15px;
+                        background: #f7f7f7;
+                        border-radius: 8px;
+                    "
+                >
+                    <p>
+                        <strong>Student ID:</strong>
+                        <span id="activationStudentId"></span>
+                    </p>
+
+                    <p>
+                        <strong>Activation Code:</strong>
+                        <span id="activationCode"></span>
+                    </p>
+
+                    <p>
+                        <strong>Expires:</strong>
+                        <span id="activationExpiry"></span>
+                    </p>
+
+                    <small>
+                        Give this code to the student. It expires after 24 hours.
+                    </small>
+                </div>
+            </div>
+
+
+            <button
+                type="button"
+                onclick="window.location.href='admin-edit-student.html'">
+                ✏️ Edit Student
+            </button>
+
+            <button
+                type="button"
+                id="deleteStudentButton"
+                style="background: #b00020;">
+                🗑️ Delete Student
+            </button>
+
+            <button
+                type="button"
+                onclick="window.location.href='admin-students.html'">
+                ← Back to Students
+            </button>
+        </section>
+
+    </main>
+
+    <script src="config.js"></script>
+    <script src="admin-student-profile.js"></script>
+
+</body>
+
+</html>

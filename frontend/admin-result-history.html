@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Result History</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            width: 94%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .back-button {
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 6px;
+            background: #555;
+            color: white;
+            cursor: pointer;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 11px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        th {
+            background: #f1f1f1;
+        }
+
+        #message {
+            margin-top: 15px;
+            min-height: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Result History</h1>
+
+        <p>
+            The Ambassadors School, Ota
+        </p>
+
+    </header>
+
+
+    <main>
+
+        <button
+            type="button"
+            class="back-button"
+            onclick="window.location.href='admin-dashboard.html'">
+
+            ← Back to Dashboard
+
+        </button>
+
+
+        <section class="card">
+
+            <h2>All Student Results</h2>
+
+            <p id="message">
+                Loading result records...
+            </p>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>S/N</th>
+
+                            <th>Student ID</th>
+
+                            <th>Student Name</th>
+
+                            <th>Class</th>
+
+                            <th>Subject</th>
+
+                            <th>CA</th>
+
+                            <th>Exam</th>
+
+                            <th>Total</th>
+
+                            <th>Grade</th>
+
+                            <th>Term</th>
+
+                            <th>Session</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="resultsTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="config.js"></script>
+    <script src="admin-result-history.js"></script>
+
+</body>
+
+</html>

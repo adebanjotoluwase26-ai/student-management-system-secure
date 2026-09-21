@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Attendance</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            width: 92%;
+            max-width: 700px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .back-button {
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 6px;
+            background: #555;
+            color: white;
+            cursor: pointer;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 6px;
+            background: #222;
+            color: white;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-top: 15px;
+            min-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Manage Attendance</h1>
+        <p>The Ambassadors School, Ota</p>
+    </header>
+
+    <main>
+
+        <button
+            type="button"
+            class="back-button"
+            onclick="window.location.href='admin-dashboard.html'">
+            ← Back to Dashboard
+        </button>
+
+        <section class="card">
+
+            <h2>Record Student Attendance</h2>
+
+            <form id="attendanceForm">
+
+                <label for="studentId">
+                    Student
+                </label>
+
+                <select id="studentId" required>
+                    <option value="">
+                        Select Student
+                    </option>
+                </select>
+
+
+                <label for="date">
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="date"
+                    required
+                >
+
+
+                <label for="status">
+                    Attendance Status
+                </label>
+
+                <select id="status" required>
+
+                    <option value="">
+                        Select Status
+                    </option>
+
+                    <option value="Present">
+                        Present
+                    </option>
+
+                    <option value="Absent">
+                        Absent
+                    </option>
+
+                </select>
+
+
+                <button type="submit">
+                    Record Attendance
+                </button>
+
+            </form>
+
+            <p id="message"></p>
+
+        </section>
+
+    </main>
+
+    <script src="config.js"></script>
+    <script src="admin-attendance.js"></script>
+
+</body>
+
+</html>

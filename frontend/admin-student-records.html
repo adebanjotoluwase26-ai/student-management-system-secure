@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Student Records</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            width: 94%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .back-button {
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 6px;
+            background: #555;
+            color: white;
+            cursor: pointer;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .summary-box {
+            background: #f7f7f7;
+            padding: 18px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .summary-box strong {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #f7f7f7;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th,
+        td {
+            padding: 11px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        th {
+            background: #f1f1f1;
+        }
+
+        #message {
+            margin-top: 15px;
+            min-height: 20px;
+        }
+
+        @media (max-width: 800px) {
+
+            .summary-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Student Records</h1>
+
+        <p>
+            The Ambassadors School, Ota
+        </p>
+
+    </header>
+
+
+    <main>
+
+        <button
+            type="button"
+            class="back-button"
+            onclick="window.location.href='admin-dashboard.html'">
+
+            ← Back to Dashboard
+
+        </button>
+
+
+        <section class="card">
+
+            <h2>Select Student</h2>
+
+            <label for="studentSelect">
+                Student
+            </label>
+
+            <select id="studentSelect">
+
+                <option value="">
+                    Select Student
+                </option>
+
+            </select>
+
+            <p id="message"></p>
+
+        </section>
+
+
+        <section
+            class="card"
+            id="studentProfile"
+            style="display: none;"
+        >
+
+            <h2 id="studentName">
+                Student
+            </h2>
+
+            <div class="profile-grid">
+
+                <div class="info-box">
+
+                    <strong>
+                        Student ID
+                    </strong>
+
+                    <span id="studentId">
+                        -
+                    </span>
+
+                </div>
+
+                <div class="info-box">
+
+                    <strong>
+                        Class
+                    </strong>
+
+                    <span id="studentClass">
+                        -
+                    </span>
+
+                </div>
+
+                <div class="info-box">
+
+                    <strong>
+                        Email
+                    </strong>
+
+                    <span id="studentEmail">
+                        -
+                    </span>
+
+                </div>
+
+                <div class="info-box">
+
+                    <strong>
+                        Account Status
+                    </strong>
+
+                    <span id="accountStatus">
+                        -
+                    </span>
+
+                </div>
+
+                <div class="info-box">
+
+                    <strong>
+                        Gender
+                    </strong>
+
+                    <span id="studentGender">
+                        -
+                    </span>
+
+                </div>
+
+                <div class="info-box">
+
+                    <strong>
+                        Phone
+                    </strong>
+
+                    <span id="studentPhone">
+                        -
+                    </span>
+
+                </div>
+
+                <div
+                    class="info-box"
+                    style="grid-column: 1 / -1;"
+                >
+
+                    <strong>
+                        Subjects
+                    </strong>
+
+                    <span id="studentSubjects">
+                        -
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section
+            class="card"
+            id="attendanceSection"
+            style="display: none;"
+        >
+
+            <h2>Attendance Summary</h2>
+
+            <div class="summary-grid">
+
+                <div class="summary-box">
+
+                    <strong id="attendanceTotal">
+                        0
+                    </strong>
+
+                    Total
+
+                </div>
+
+                <div class="summary-box">
+
+                    <strong id="attendancePresent">
+                        0
+                    </strong>
+
+                    Present
+
+                </div>
+
+                <div class="summary-box">
+
+                    <strong id="attendanceAbsent">
+                        0
+                    </strong>
+
+                    Absent
+
+                </div>
+
+                <div class="summary-box">
+
+                    <strong id="attendanceRate">
+                        0%
+                    </strong>
+
+                    Attendance Rate
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="attendanceTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <section
+            class="card"
+            id="resultsSection"
+            style="display: none;"
+        >
+
+            <h2>Academic Results</h2>
+
+            <div class="summary-grid">
+
+                <div class="summary-box">
+
+                    <strong id="resultCount">
+                        0
+                    </strong>
+
+                    Subjects
+
+                </div>
+
+                <div class="summary-box">
+
+                    <strong id="resultTotal">
+                        0
+                    </strong>
+
+                    Total Marks
+
+                </div>
+
+                <div class="summary-box">
+
+                    <strong id="resultAverage">
+                        0%
+                    </strong>
+
+                    Average
+
+                </div>
+
+                <div class="summary-box">
+
+                    <strong id="resultSession">
+                        -
+                    </strong>
+
+                    Latest Session
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Subject
+                            </th>
+
+                            <th>
+                                CA
+                            </th>
+
+                            <th>
+                                Exam
+                            </th>
+
+                            <th>
+                                Total
+                            </th>
+
+                            <th>
+                                Grade
+                            </th>
+
+                            <th>
+                                Term
+                            </th>
+
+                            <th>
+                                Session
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="resultsTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="config.js"></script>
+    <script src="admin-student-records.js"></script>
+
+</body>
+
+</html>

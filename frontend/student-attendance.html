@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Attendance</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .attendance-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .summary-box {
+            background: #f7f7f7;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .summary-box strong {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #f1f1f1;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 6px;
+            background: #222;
+            color: white;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .summary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>My Attendance</h1>
+        <p>The Ambassadors School, Ota</p>
+    </header>
+
+    <main>
+
+        <section class="attendance-card">
+
+            <h2>Attendance Records</h2>
+
+            <p id="studentId">Loading student...</p>
+
+            <div class="summary">
+
+                <div class="summary-box">
+                    <strong id="totalDays">0</strong>
+                    Total Days
+                </div>
+
+                <div class="summary-box">
+                    <strong id="presentDays">0</strong>
+                    Present
+                </div>
+
+                <div class="summary-box">
+                    <strong id="absentDays">0</strong>
+                    Absent
+                </div>
+
+            </div>
+
+            <p id="attendanceRate">
+                Attendance Rate: 0%
+            </p>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="attendanceTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <button
+                type="button"
+                onclick="window.location.href='student-dashboard.html'">
+                ← Back to Dashboard
+            </button>
+
+        </section>
+
+    </main>
+
+    <script src="config.js"></script>
+    <script src="student-attendance.js"></script>
+
+</body>
+</html>

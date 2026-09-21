@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>School Portal</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #f4f6f8;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 700px;
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.1);
+
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+
+            margin-bottom: 30px;
+        }
+
+        .portal-section {
+            margin-top: 25px;
+        }
+
+        .portal-section h2 {
+            margin-bottom: 15px;
+        }
+
+        .buttons {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #222;
+
+            color: white;
+
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .admin-section {
+            border-top:
+                1px solid #ddd;
+
+            margin-top: 35px;
+
+            padding-top: 25px;
+        }
+
+        @media (max-width: 600px) {
+
+            .buttons {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>
+            🎓 School Portal
+        </h1>
+
+        <p class="subtitle">
+            The Ambassadors School, Ota
+        </p>
+
+
+        <div class="portal-section">
+
+            <h2>
+                Student Portal
+            </h2>
+
+            <div class="buttons">
+
+                <a href="login.html">
+                    <button>
+                        🔐 Student Login
+                    </button>
+                </a>
+
+                <a href="activate-account.html">
+                    <button>
+                        ✅ Activate Account
+                    </button>
+                </a>
+
+                <a href="forgot-password.html">
+                    <button>
+                        🔑 Forgot Password
+                    </button>
+                </a>
+
+                <a href="forgot-email.html">
+                    <button>
+                        📧 Forgot Login Email
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-section">
+
+            <h2>
+                Administrator
+            </h2>
+
+            <a href="admin-login.html">
+
+                <button>
+                    🛠️ Admin Portal
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
