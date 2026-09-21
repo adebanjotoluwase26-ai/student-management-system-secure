@@ -1,1 +1,2 @@
-window.API_BASE_URL = "http://localhost:5000";
+window.API_BASE_URL =
+    "https://student-management-api-3cwh.onrender.com";
