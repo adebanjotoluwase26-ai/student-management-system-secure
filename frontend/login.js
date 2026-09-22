@@ -11,7 +11,7 @@ loginForm.addEventListener("submit", async function (event) {
 
     try {
         const response = await fetch(
-            "${window.API_BASE_URL}/api/auth/login",
+             window.API_BASE_URL + "/api/auth/login",
             {
                 method: "POST",
                 headers: {
