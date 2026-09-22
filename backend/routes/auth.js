@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const authMiddleware = require("../middleware/authMiddleware");
 const Student = require("../models/Student");
-const crypto = require("crypto");
+
 
 const router = express.Router();
 
@@ -28,9 +28,9 @@ router.post("/login", async (req, res) => {
             });
         }
 
-        if (
+       if (
             user.role === "student" &&
-            user.accountStatus !== "active"
+            user.accountStatus === "pending"
         ) {
             return res.status(403).json({
                 message:
@@ -146,9 +146,10 @@ router.post("/activate", async (req, res) => {
 
 
         // Find pending student account
-        const user = await User.findOne({
+       const user = await User.findOne({
             studentId,
-            role: "student"
+            role: "student",
+            accountStatus: "pending"
         });
 
 
@@ -156,15 +157,6 @@ router.post("/activate", async (req, res) => {
             return res.status(404).json({
                 message:
                     "Student account not found"
-            });
-        }
-
-
-        // Already active
-        if (user.accountStatus === "active") {
-            return res.status(400).json({
-                message:
-                    "This account has already been activated"
             });
         }
 
@@ -297,173 +289,5 @@ router.post("/activate", async (req, res) => {
     }
 });
 
-// ========================================
-// REQUEST PASSWORD RESET
-// ========================================
-
-router.post("/forgot-password", async (req, res) => {
-    try {
-        const { email, studentId } = req.body || {};
-
-        if (!email && !studentId) {
-            return res.status(400).json({
-                message:
-                    "Enter your email address or student ID"
-            });
-        }
-
-        const query = email
-            ? { email: email.toLowerCase() }
-            : { studentId };
-
-        const user = await User.findOne(query);
-
-        // Do not reveal whether an account exists
-        if (!user || user.role !== "student") {
-            return res.json({
-                message:
-                    "If the account exists, password reset instructions will be provided."
-            });
-        }
-
-        if (user.accountStatus !== "active") {
-            return res.json({
-                message:
-                    "If the account exists, password reset instructions will be provided."
-            });
-        }
-
-        const resetToken =
-            crypto.randomBytes(32).toString("hex");
-
-        user.resetTokenHash =
-            await bcrypt.hash(resetToken, 10);
-
-        user.resetTokenExpiresAt =
-            new Date(
-                Date.now() + 15 * 60 * 1000
-            );
-
-        user.resetRequestedAt =
-            new Date();
-
-        await user.save();
-
-        res.json({
-            message:
-                "Password reset request created successfully"
-        });
-
-    } catch (error) {
-
-        console.error(
-            "Forgot password error:",
-            error.message
-        );
-
-        res.status(500).json({
-            message:
-                "Server error while requesting password reset"
-        });
-    }
-});
-
-// ========================================
-// RESET PASSWORD
-// ========================================
-
-router.post("/reset-password", async (req, res) => {
-    try {
-        const {
-            studentId,
-            resetToken,
-            newPassword
-        } = req.body || {};
-
-        if (
-            !studentId ||
-            !resetToken ||
-            !newPassword
-        ) {
-            return res.status(400).json({
-                message:
-                    "Student ID, reset token and new password are required"
-            });
-        }
-
-        if (newPassword.length < 8) {
-            return res.status(400).json({
-                message:
-                    "Password must be at least 8 characters"
-            });
-        }
-
-        const user = await User.findOne({
-            studentId,
-            role: "student",
-            accountStatus: "active"
-        });
-
-        if (!user) {
-            return res.status(400).json({
-                message:
-                    "Invalid password reset request"
-            });
-        }
-
-        if (
-            !user.resetTokenHash ||
-            !user.resetTokenExpiresAt ||
-            user.resetTokenExpiresAt < new Date()
-        ) {
-            return res.status(400).json({
-                message:
-                    "Reset token is invalid or expired"
-            });
-        }
-
-        const tokenMatches =
-            await bcrypt.compare(
-                resetToken,
-                user.resetTokenHash
-            );
-
-        if (!tokenMatches) {
-            return res.status(400).json({
-                message:
-                    "Reset token is invalid or expired"
-            });
-        }
-
-        user.password =
-            await bcrypt.hash(
-                newPassword,
-                10
-            );
-
-        user.resetTokenHash = null;
-        user.resetTokenExpiresAt = null;
-        user.resetRequestedAt = null;
-
-        await user.save();
-
-        res.json({
-            message:
-                "Password reset successfully"
-        });
-
-    } catch (error) {
-
-        console.error(
-            "Reset password error:",
-            error.message
-        );
-
-        res.status(500).json({
-            message:
-                "Server error while resetting password"
-        });
-    }
-});
 
 module.exports = router;
